@@ -40,12 +40,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Patient/DeletePatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxEZWxldGVQYXRpZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Patient/EditPatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxFZGl0UGF0aWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Patient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Shared/Error.cshtml]
@@ -67,6 +75,14 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-dr5z1qr3jv
+
+[C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Patient/AddPatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxBZGRQYXRpZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-4brif2aemf
 
 [C:/Old laptop/Projects/ChorbadzhiyskiKinesitherapy/ChorbadzhiyskiKinesitherapy/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s

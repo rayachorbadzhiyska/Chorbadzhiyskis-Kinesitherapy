@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Chorbadzhiyski Kinesitherapy</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Patient" asp-action="Index">Chorbadzhiyski Kinesitherapy</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,8 +23,17 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/Patient/Index">
+                        Пациенти
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main id="main-body" role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
@@ -37,6 +46,30 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Function to load Razor views via AJAX
+            function loadView(url) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#main-body').html(data);
+                    }
+                });
+            }
+
+            // Handle menu item clicks
+            $('.nav-link').click(function (e) {
+                e.preventDefault();
+                var targetUrl = $(this).attr('href');
+                loadView(targetUrl);
+            });
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

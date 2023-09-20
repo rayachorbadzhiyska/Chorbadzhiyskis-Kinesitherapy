@@ -1,0 +1,54 @@
+﻿@using System.Diagnostics;
+@model PatientViewModel
+
+<form id="editPatient-@Model.Id" asp-controller="Patient" asp-action="Update" asp-route-id="@Model.Id" method="post" role="form">
+    <div class="modal fade" id="editPatientModal-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPatientModalLabel">Редактирай пациент</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Name" class="control-label" style="margin-right:10px">Име</label>
+                    <input asp-for="Name" class="form-control" placeholder="Име" style="margin-right:auto" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="MobileNumber" style="margin-right:10px">Мобилен номер</label>
+                    <input asp-for="MobileNumber" class="form-control" placeholder="Мобилен номер" style="margin-right:auto" />
+                </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Birthday" style="margin-right:10px">Рожден ден</label>
+                    <input type="date" asp-for="Birthday" class="form-control" style="margin-right:auto" />
+                </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Address" style="margin-right:10px">Адрес</label>
+                    <input asp-for="Address" class="form-control" placeholder="Адрес" style="margin-right:auto" />
+                </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Diagnose" style="margin-right:10px">Диагноза</label>
+                    <input asp-for="Diagnose" class="form-control" placeholder="Диагноза" style="margin-right:auto" />
+                </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="FirstAppointment" style="margin-right:10px">Първи преглед</label>
+                    <input type="date" asp-for="FirstAppointment" class="form-control" style="margin-right:auto" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+                <button type="submit" class="btn btn-primary">
+                    Редактирай
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
