@@ -8,8 +8,7 @@ namespace ChorbadzhiyskiKinesitherapy.Models
     public class PatientViewModel
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [BsonRequired]
         [Required]
@@ -35,7 +34,7 @@ namespace ChorbadzhiyskiKinesitherapy.Models
 
         public PatientViewModel()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
             Name = string.Empty;
             MobileNumber = string.Empty;
             Address = string.Empty;

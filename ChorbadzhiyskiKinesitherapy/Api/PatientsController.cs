@@ -22,7 +22,7 @@ namespace ChorbadzhiyskiKinesitherapy.Api
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PatientViewModel>> Get(Guid id)
+        public async Task<ActionResult<PatientViewModel>> Get(string id)
         {
             var patient = await _patientsService.GetAsync(id);
 
@@ -43,7 +43,7 @@ namespace ChorbadzhiyskiKinesitherapy.Api
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, PatientViewModel updatedPatient)
+        public async Task<IActionResult> Update(string id, PatientViewModel updatedPatient)
         {
             var patient = await _patientsService.GetAsync(id);
 
@@ -60,7 +60,7 @@ namespace ChorbadzhiyskiKinesitherapy.Api
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(string id)
         {
             var patient = await _patientsService.GetAsync(id);
 

@@ -19,14 +19,9 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             return View(patientsData);
         }
 
-        public IActionResult AddPatient()
-        {
-            return PartialView(new PatientViewModel());
-        }
-
         [HttpGet]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(string id)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +49,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(Guid id, [Bind("Name, MobileNumber, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel updatedPatient)
+        public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel updatedPatient)
         {
             if (!ModelState.IsValid)
             {
@@ -70,7 +65,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (!ModelState.IsValid)
             {

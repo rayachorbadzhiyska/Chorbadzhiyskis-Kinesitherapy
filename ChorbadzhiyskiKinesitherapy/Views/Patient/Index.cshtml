@@ -2,37 +2,45 @@
 
 <partial name="AddPatient.cshtml" model="new PatientViewModel()" />
 
-<div>
+<div class="container">
 
-    <table class="table" style="float:left; width:90%; overflow-y:auto;">
-        <thead>
-            <tr>
-                <th>Име</th>
-                <th>Телефонен номер</th>
-                <th>Диагноза</th>
-                <th>Последен преглед</th>
-                <th>Първи преглед</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var patient in Model)
-            {
-                <tr>
-                    <td>@patient.Name</td>
-                    <td>@patient.MobileNumber</td>
-                    <td>@patient.Diagnose</td>
-                    <td>@patient.LastAppointment</td>
-                    <td>@patient.FirstAppointment</td>
-                    <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</button></td>
-                    <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</button></td>
-                </tr>
+    <div class="row">
+        <div class="col-11">
+            <table id="patientsTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Име</th>
+                        <th>Телефонен номер</th>
+                        <th>Диагноза</th>
+                        <th>Последен преглед</th>
+                        <th>Първи преглед</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var patient in Model)
+                    {
+                        <tr>
+                            <td>@patient.Name</td>
+                            <td>@patient.MobileNumber</td>
+                            <td>@patient.Diagnose</td>
+                            <td>@patient.LastAppointment</td>
+                            <td>@patient.FirstAppointment</td>
+                            <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</button></td>
+                            <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</button></td>
+                        </tr>
 
-                <partial name="EditPatient.cshtml" model="patient" />
-                <partial name="DeletePatient.cshtml" model="patient" />
-            }
-        </tbody>
-    </table>
+                        <partial name="EditPatient.cshtml" model="patient" />
 
-    <button type="button" class="btn btn-primary" style="width:10%; float:right" data-bs-toggle="modal" data-bs-target="#addPatientModal">+</button>
+                        <partial name="DeletePatient.cshtml" model="patient" />
+                    }
+                </tbody>
+            </table>
+        </div>
 
-</div>
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави</button>
+        </div>
+
+    </div>
+
+</div>  

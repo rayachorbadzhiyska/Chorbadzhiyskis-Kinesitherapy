@@ -25,10 +25,11 @@ namespace ChorbadzhiyskiKinesitherapy.Services
         public async Task<List<PatientViewModel>> GetAsync()
         {
             var patientsData = await _patientsCollection.Find(_ => true).ToListAsync();
+
             return patientsData;
         }
 
-        public async Task<PatientViewModel?> GetAsync(Guid id)
+        public async Task<PatientViewModel?> GetAsync(string id)
         {
             var patient = await _patientsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
             return patient;
@@ -39,7 +40,7 @@ namespace ChorbadzhiyskiKinesitherapy.Services
             await _patientsCollection.InsertOneAsync(newPatient);
         }
 
-        public async Task UpdateAsync(Guid id, PatientViewModel updatedPatient)
+        public async Task UpdateAsync(string id, PatientViewModel updatedPatient)
         {
             var result = await _patientsCollection.ReplaceOneAsync(x => x.Id == id, updatedPatient);
 
@@ -49,7 +50,7 @@ namespace ChorbadzhiyskiKinesitherapy.Services
             }
         }
 
-        public async Task RemoveAsync(Guid id)
+        public async Task RemoveAsync(string id)
         {
             var result = await _patientsCollection.DeleteOneAsync(x => x.Id == id);
 
