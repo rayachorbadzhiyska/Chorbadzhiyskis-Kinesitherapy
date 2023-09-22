@@ -1,6 +1,7 @@
 ﻿using ChorbadzhiyskiKinesitherapy.Models;
 using ChorbadzhiyskiKinesitherapy.Services;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace ChorbadzhiyskiKinesitherapy.Controllers
 {
@@ -13,10 +14,19 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             this.patientsService = patientsService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page = 1)
         {
+            if (page != null && page < 1)
+            {
+                page = 1;
+            }
+
+            var pageSize = 20;
+
             var patientsData = await patientsService.GetAsync();
-            return View(patientsData);
+            var pagedPatientsData = patientsData.ToPagedList(page ?? 1, pageSize);
+
+            return View(pagedPatientsData);
         }
 
         [HttpGet]
