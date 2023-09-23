@@ -24,15 +24,17 @@
         </nav>
     </header>
     <div>
-        <nav id="sidebar" class="d-md-block bg-dark sidebar">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Patient/Index">
-                        Пациенти
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div id="nav-sidebar">
+            <nav id="sidebar" class="d-md-block bg-dark sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Patient/Index">
+                            Пациенти
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
         <main id="main-body" role="main" class="pb-5">
             @RenderBody()
         </main>

@@ -4,11 +4,11 @@
 
 @model IPagedList<PatientViewModel>
 
-<partial name="AddPatient.cshtml" model="new PatientViewModel()" />
+@if (Model is not null)
+{
+    <partial name="AddPatient.cshtml" model="new PatientViewModel()" />
 
-<div class="container">
-    @if (Model is not null)
-    {
+    <div class="container">
         <div class="row">
             <div class="col-11">
                 <table id="patientsTable" class="table">
@@ -49,17 +49,17 @@
 
         <nav>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions()
-            {
-                ActiveLiElementClass = "active",
-                PageClasses = new[]{ "page-link"},
-                LiElementClasses=new[] { "page-item" },
-                UlElementClasses = new[] { "pagination", "justify-content-center", "mt-3" },
-                LinkToNextPageFormat = "Следваща",
-                LinkToPreviousPageFormat = "Предишна",
-                MaximumPageNumbersToDisplay = 5,
-                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                DisplayLinkToNextPage = PagedListDisplayMode.Always
-            })
+        {
+        ActiveLiElementClass = "active",
+        PageClasses = new[]{ "page-link"},
+        LiElementClasses=new[] { "page-item" },
+        UlElementClasses = new[] { "pagination", "justify-content-center", "mt-3" },
+        LinkToNextPageFormat = "Следваща",
+        LinkToPreviousPageFormat = "Предишна",
+        MaximumPageNumbersToDisplay = 5,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always
+        })
         </nav>
-    }
-</div>  
+    </div>
+}
