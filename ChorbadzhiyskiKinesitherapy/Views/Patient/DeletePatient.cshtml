@@ -1,7 +1,7 @@
 ﻿@model PatientViewModel
 
 <form id="deletePatient-@Model.Id" asp-controller="Patient" asp-action="Delete" asp-route-id="@Model.Id" method="post" role="form">
-    <div class="modal fade" id="deletePatientModal-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="deletePatientModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deletePatientModal-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="deletePatientModalLabel-@Model.Id" aria-hidden="true">
         <div class="modal-dialog modal-content">
             <div class="modal-header">
                 <button style="align-content:end" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p id="deletePatientModalLabel">Сигурни ли сте, че искате да изтриете пациент @Model.Name?</>
+                <p id="deletePatientModalLabel-@Model.Id">Сигурни ли сте, че искате да изтриете пациент @Model.Name?</>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>

@@ -33,6 +33,11 @@ namespace ChorbadzhiyskiKinesitherapy
 
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddAntiforgery(options =>
+            {
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -50,10 +55,19 @@ namespace ChorbadzhiyskiKinesitherapy
                 app.UseHsts();
             }
 
+            app.UseWebSockets();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                Secure = CookieSecurePolicy.Always,
+                HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always,
+                MinimumSameSitePolicy = SameSiteMode.None,
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();

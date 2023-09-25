@@ -1,10 +1,10 @@
 ﻿@model PatientViewModel
 
 <form id="addPatient" asp-controller="Patient" asp-action="Create" asp-route-id="Model" method="post" role="form">
-    <div class="modal fade" id="addPatientModal" tabindex="-1" role="dialog" aria-labelledby="addPatientModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addPatientModal" tabindex="-1" role="dialog" aria-labelledby="addPatientModalLabel-@Model.Id" aria-hidden="true">
         <div class="modal-dialog modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addPatientModalLabel">Добави пациент</h5>
+                <h5 class="modal-title" id="addPatientModalLabel-@Model.Id">Добави пациент</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,13 +13,13 @@
 
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                     <label asp-for="Name" class="control-label" style="margin-right:10px">Име</label>
-                    <input asp-for="Name" class="form-control" placeholder="Име" style="margin-right:auto" />
+                    <input asp-for="Name" class="form-control" placeholder="Име" style="margin-right:auto" autocomplete="on" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                     <label asp-for="MobileNumber" style="margin-right:10px">Мобилен номер</label>
-                    <input asp-for="MobileNumber" class="form-control" placeholder="Мобилен номер" style="margin-right:auto" />
+                    <input asp-for="MobileNumber" class="form-control" placeholder="Мобилен номер" style="margin-right:auto" autocomplete="on" />
                 </div>
 
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
@@ -29,12 +29,12 @@
 
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                     <label asp-for="Address" style="margin-right:10px">Адрес</label>
-                    <input asp-for="Address" class="form-control" placeholder="Адрес" style="margin-right:auto" />
+                    <input asp-for="Address" class="form-control" placeholder="Адрес" style="margin-right:auto" autocomplete="on" />
                 </div>
 
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                     <label asp-for="Diagnose" style="margin-right:10px">Диагноза</label>
-                    <input asp-for="Diagnose" class="form-control" placeholder="Диагноза" style="margin-right:auto" />
+                    <input asp-for="Diagnose" class="form-control" placeholder="Диагноза" style="margin-right:auto" autocomplete="on" />
                 </div>
 
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
