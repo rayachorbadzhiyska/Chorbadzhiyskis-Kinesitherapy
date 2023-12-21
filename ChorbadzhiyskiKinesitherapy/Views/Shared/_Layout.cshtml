@@ -59,7 +59,11 @@
                     url: url,
                     dataType: 'html',
                     success: function (data) {
-                        $('#main-body').html(data);
+                        // Extract the content from the loaded HTML
+                        var content = $(data).filter('#main-body').html();
+
+                        // Replace the content of #main-body
+                        $('#main-body').html(content);
                     }
                 });
             }
