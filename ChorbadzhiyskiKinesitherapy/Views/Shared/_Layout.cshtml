@@ -28,7 +28,7 @@
             <nav id="sidebar" class="d-md-block bg-dark sidebar">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/Patient/Index">
+                        <a class="nav-link active" asp-area="" asp-controller="Patient" asp-action="Index">
                             Пациенти
                         </a>
                     </li>
@@ -49,33 +49,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Function to load Razor views via AJAX
-            function loadView(url) {
-                $.ajax({
-                    type: 'GET',
-                    url: url,
-                    dataType: 'html',
-                    success: function (data) {
-                        // Extract the content from the loaded HTML
-                        var content = $(data).filter('#main-body').html();
-
-                        // Replace the content of #main-body
-                        $('#main-body').html(content);
-                    }
-                });
-            }
-
-            // Handle menu item clicks
-            $('.nav-link').click(function (e) {
-                e.preventDefault();
-                var targetUrl = $(this).attr('href');
-                loadView(targetUrl);
-            });
-        });
-    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
