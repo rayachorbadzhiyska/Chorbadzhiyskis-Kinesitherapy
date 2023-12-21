@@ -10,8 +10,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-11">
-                <table id="patientsTable" class="table">
+            <div class="col-10">
+                <table id="patientsTable" class="table w-auto">
                     <thead>
                         <tr>
                             <th>Име</th>
@@ -28,8 +28,8 @@
                                 <td>@patient.Name</td>
                                 <td>@patient.MobileNumber</td>
                                 <td>@patient.Diagnose</td>
-                                <td>@patient.LastAppointment</td>
-                                <td>@patient.FirstAppointment</td>
+                                <td>@patient.LastAppointment?.ToString("dddd, dd MMMM yyyy")</td>
+                                <td>@patient.FirstAppointment?.ToString("dddd, dd MMMM yyyy")</td>
                                 <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</button></td>
                                 <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</button></td>
                             </tr>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави</button>
+                <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</button>
             </div>
         </div>
 

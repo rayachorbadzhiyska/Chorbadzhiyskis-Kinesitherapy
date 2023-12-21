@@ -11,7 +11,7 @@
             <hr />
             <h2>Вход</h2>
             <hr />
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="08........" />
                 <label asp-for="Input.PhoneNumber" class="form-label">Телефонен номер</label>

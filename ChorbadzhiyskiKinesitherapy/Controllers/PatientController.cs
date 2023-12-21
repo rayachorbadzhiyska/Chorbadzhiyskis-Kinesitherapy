@@ -1,5 +1,6 @@
 ﻿using ChorbadzhiyskiKinesitherapy.Models;
 using ChorbadzhiyskiKinesitherapy.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -7,11 +8,22 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 {
     public class PatientController : Controller
     {
-        private readonly PatientsService patientsService;
+        private readonly PatientsService patientsService; 
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IUserStore<ApplicationUser> userStore;
 
-        public PatientController(PatientsService patientsService)
+        public PatientController(
+            PatientsService patientsService,
+            IUserStore<ApplicationUser> userStore,
+            UserManager<ApplicationUser> userManager
+            )
         {
-            this.patientsService = patientsService;
+            this.patientsService = patientsService ?? throw new ArgumentNullException(nameof(patientsService));
+            this.userStore = userStore ?? throw new ArgumentNullException(nameof(userStore));
+
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            // Disable password validation so that the EGN can be used as a password.
+            this.userManager.PasswordValidators.Clear();
         }
 
         public async Task<IActionResult> Index(int? page = 1)
@@ -45,7 +57,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name, MobileNumber, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel newPatient)
+        public async Task<IActionResult> Create([Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel newPatient)
         {
             if (!ModelState.IsValid)
             {
@@ -54,12 +66,17 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
             await patientsService.CreateAsync(newPatient);
 
+            var user = CreateUser();
+
+            await userStore.SetUserNameAsync(user, newPatient.MobileNumber, CancellationToken.None);
+            var result = await userManager.CreateAsync(user, newPatient.MobileNumber);
+
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel updatedPatient)
+        public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel updatedPatient)
         {
             if (!ModelState.IsValid)
             {
@@ -85,6 +102,20 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             await patientsService.RemoveAsync(id);
 
             return RedirectToAction("Index");
+        }
+
+        private ApplicationUser CreateUser()
+        {
+            try
+            {
+                return Activator.CreateInstance<ApplicationUser>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+            }
         }
     }
 }

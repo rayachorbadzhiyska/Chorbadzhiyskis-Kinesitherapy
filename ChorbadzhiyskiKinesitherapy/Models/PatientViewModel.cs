@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace ChorbadzhiyskiKinesitherapy.Models
@@ -18,16 +16,24 @@ namespace ChorbadzhiyskiKinesitherapy.Models
         [Required]
         public string MobileNumber { get; set; }
 
+        [BsonRequired]
+        [Required]
+        public string EGN { get; set; }
+
         public string? Address { get; set; }
 
         public string? Diagnose { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime? Birthday { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime? FirstAppointment { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime? LastAppointment { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public List<DateTime>? Appointments { get; set; }
 
         public string? Complaints { get; set; }

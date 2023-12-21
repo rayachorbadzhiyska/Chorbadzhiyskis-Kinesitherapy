@@ -12,34 +12,39 @@
             </div>
             <div class="modal-body">
 
-                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="Name" class="control-label" style="margin-right:10px">Име</label>
+                <div class="form-row align-items-end mb-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Name" class="form-label col-auto" style="margin-right:10px">Име</label>
                     <input asp-for="Name" class="form-control" placeholder="Име" style="margin-right:auto" autocomplete="on" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
-                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="MobileNumber" style="margin-right:10px">Мобилен номер</label>
+                <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="MobileNumber" class="form-label col-auto" style="margin-right:10px">Мобилен номер</label>
                     <input asp-for="MobileNumber" class="form-control" placeholder="Мобилен номер" style="margin-right:auto" autocomplete="on" />
                 </div>
 
-                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="Birthday" style="margin-right:10px">Рожден ден</label>
+                <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="EGN" class="form-label col-auto" style="margin-right:10px">ЕГН</label>
+                    <input asp-for="EGN" class="form-control" placeholder="ЕГН" style="margin-right:auto" autocomplete="on" />
+                </div>
+
+                <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Birthday" class="form-label col-auto" style="margin-right:10px">Рожден ден</label>
                     <input type="date" asp-for="Birthday" class="form-control" style="margin-right:auto" />
                 </div>
 
-                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="Address" style="margin-right:10px">Адрес</label>
+                <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Address" class="form-label col-auto" style="margin-right:10px">Адрес</label>
                     <input asp-for="Address" class="form-control" placeholder="Адрес" style="margin-right:auto" autocomplete="on" />
                 </div>
 
-                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="Diagnose" style="margin-right:10px">Диагноза</label>
+                <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Diagnose" class="form-label col-auto" style="margin-right:10px">Диагноза</label>
                     <input asp-for="Diagnose" class="form-control" placeholder="Диагноза" style="margin-right:auto" autocomplete="on" />
                 </div>
 
-                <div style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="FirstAppointment" style="margin-right:10px">Първи преглед</label>
+                <div class="form-row align-items-end mt-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="FirstAppointment" class="form-label col-auto" style="margin-right:10px">Първи преглед</label>
                     <input type="date" asp-for="FirstAppointment" class="form-control" style="margin-right:auto" />
                 </div>
             </div>
