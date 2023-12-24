@@ -8,7 +8,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 {
     public class PatientController : Controller
     {
-        private readonly PatientsService patientsService; 
+        private readonly PatientsService patientsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserStore<ApplicationUser> userStore;
 
@@ -33,7 +33,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
                 page = 1;
             }
 
-            var pageSize = 20;
+            var pageSize = 10;
 
             var patientsData = await patientsService.GetAsync();
             var pagedPatientsData = patientsData.ToPagedList(page ?? 1, pageSize);
@@ -57,7 +57,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel newPatient)
+        public async Task<IActionResult> Create([Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel newPatient)
         {
             if (!ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment")] PatientViewModel updatedPatient)
+        public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel updatedPatient)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,16 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
             await patientsService.UpdateAsync(id, updatedPatient);
 
-            return RedirectToAction("Index");
+            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                // If it's an AJAX request, return the partial view for the updated patient row
+                return PartialView("PatientTableRow", updatedPatient);
+            }
+            else
+            {
+                // If it's not an AJAX request, redirect to a suitable action or return a regular view
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]

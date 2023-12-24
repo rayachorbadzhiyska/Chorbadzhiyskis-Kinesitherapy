@@ -35,7 +35,7 @@ namespace ChorbadzhiyskiKinesitherapy.Api
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(PatientViewModel newPatient)
+        public async Task<IActionResult> Create(PatientViewModel newPatient)
         {
             await _patientsService.CreateAsync(newPatient);
 

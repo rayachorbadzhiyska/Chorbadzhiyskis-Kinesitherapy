@@ -47,6 +47,11 @@
                     <input type="date" asp-for="FirstAppointment" class="form-control" style="margin-right:auto" />
                 </div>
 
+                <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
+                    <label asp-for="Notes" class="form-label col-auto" style="margin-right:10px">Бележки</label>
+                    <input asp-for="Notes" class="form-control" placeholder="Бележки" style="margin-right:auto" autocomplete="on" />
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>

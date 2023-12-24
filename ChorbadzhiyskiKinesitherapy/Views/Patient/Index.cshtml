@@ -19,20 +19,13 @@
                             <th>Диагноза</th>
                             <th>Последен преглед</th>
                             <th>Първи преглед</th>
+                            <th>Бележки</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var patient in Model)
                         {
-                            <tr>
-                                <td>@patient.Name</td>
-                                <td>@patient.MobileNumber</td>
-                                <td>@patient.Diagnose</td>
-                                <td>@patient.LastAppointment?.ToString("dddd, dd MMMM yyyy")</td>
-                                <td>@patient.FirstAppointment?.ToString("dddd, dd MMMM yyyy")</td>
-                                <td><button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</button></td>
-                                <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</button></td>
-                            </tr>
+                            <partial name="PatientTableRow.cshtml" model="patient" />
 
                             <partial name="EditPatient.cshtml" model="patient" />
 

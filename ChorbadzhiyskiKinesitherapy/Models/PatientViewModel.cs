@@ -38,11 +38,14 @@ namespace ChorbadzhiyskiKinesitherapy.Models
 
         public string? Complaints { get; set; }
 
+        public string? Notes { get; set; }
+
         public PatientViewModel()
         {
             Id = Guid.NewGuid().ToString();
             Name = string.Empty;
             MobileNumber = string.Empty;
+            EGN = string.Empty;
             Address = string.Empty;
             Diagnose = string.Empty;
             Birthday = DateTime.Today;
@@ -50,6 +53,7 @@ namespace ChorbadzhiyskiKinesitherapy.Models
             LastAppointment = DateTime.Today;
             Appointments = new List<DateTime>();
             Complaints = string.Empty;
+            Notes = string.Empty;
         }
     }
 }
