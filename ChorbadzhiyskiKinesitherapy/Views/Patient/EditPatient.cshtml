@@ -1,5 +1,4 @@
-﻿@using System.Diagnostics;
-@model PatientViewModel
+﻿@model PatientViewModel
 
 <form id="editPatient-@Model.Id" asp-controller="Patient" asp-action="Update" asp-route-id="@Model.Id" method="post" role="form">
     <div class="modal fade" id="editPatientModal-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="editPatientModalLabel-@Model.Id" aria-hidden="true">
@@ -19,8 +18,8 @@
                 </div>
 
                 <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
-                    <label asp-for="MobileNumber" class="form-label col-auto" style="margin-right:10px">Мобилен номер</label>
-                    <input asp-for="MobileNumber" class="form-control" placeholder="Мобилен номер" style="margin-right:auto" autocomplete="on" />
+                    <label asp-for="MobileNumber" class="form-label col-auto" style="margin-right:10px">Телефонен номер</label>
+                    <input asp-for="MobileNumber" class="form-control" placeholder="Телефонен номер" style="margin-right:auto" autocomplete="on" />
                 </div>
 
                 <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
@@ -55,33 +54,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                <button type="submit" class="btn btn-primary" onclick="updatePatient(@Model.Id)">
+                <button type="submit" class="btn btn-primary">
                     Редактирай
                 </button>
             </div>
         </div>
     </div>
 </form>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-
-<script>
-    // Function to handle updating a patient via AJAX
-    function updatePatient(patientId) {
-        $.ajax({
-            type: 'POST',
-            url: '/Patient/Update/' + encodeURIComponent(patientId), // Adjust the URL based on your route
-            data: $('#editPatientForm-' + patientId).serialize(),
-            success: function (data) {
-                // Replace the existing row with the updated row
-                $('#patientsTable tbody tr[data-patient-id="' + patientId + '"]').replaceWith(data);
-
-                // Close the modal
-                $('#editPatientModal-' + patientId).modal('hide');
-            },
-            error: function (error) {
-                console.error('Error updating patient:', error);
-            }
-        });
-    }
-</script>

@@ -38,7 +38,16 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             var patientsData = await patientsService.GetAsync();
             var pagedPatientsData = patientsData.ToPagedList(page ?? 1, pageSize);
 
-            return View(pagedPatientsData);
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                // This is an AJAX request, return the partial view without layout
+                return PartialView("Index", pagedPatientsData);
+            }
+            else
+            {
+                // This is a regular request, return the full view with layout
+                return View(pagedPatientsData);
+            }
         }
 
         [HttpGet]
@@ -87,16 +96,7 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
             await patientsService.UpdateAsync(id, updatedPatient);
 
-            if (HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                // If it's an AJAX request, return the partial view for the updated patient row
-                return PartialView("PatientTableRow", updatedPatient);
-            }
-            else
-            {
-                // If it's not an AJAX request, redirect to a suitable action or return a regular view
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
