@@ -6,7 +6,7 @@
 
 @if (Model is not null)
 {
-    <partial name="AddPatient.cshtml" model="new PatientViewModel()" />
+    <partial name="Add.cshtml" model="new PatientViewModel()" />
 
     <div class="container">
         <div class="row">
@@ -27,16 +27,16 @@
                         {
                             <partial name="PatientTableRow.cshtml" model="patient" />
 
-                            <partial name="EditPatient.cshtml" model="patient" />
+                            <partial name="Edit.cshtml" model="patient" />
 
-                            <partial name="DeletePatient.cshtml" model="patient" />
+                            <partial name="Delete.cshtml" model="patient" />
                         }
                     </tbody>
                 </table>
             </div>
 
             <div class="col">
-                <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</button>
+                <a type="button" href="/Patient/Add" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</a>
             </div>
         </div>
 
@@ -55,4 +55,18 @@
         })
         </nav>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#addPatient').attr('hidden');
+        });
+    </script>
+
+    <noscript>
+        <style>
+            #addPatientModal {
+                display: none;
+            }
+        </style>
+    </noscript>
 }

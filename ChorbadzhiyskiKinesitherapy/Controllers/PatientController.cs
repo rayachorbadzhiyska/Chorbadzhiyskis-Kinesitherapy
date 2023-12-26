@@ -64,6 +64,13 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Add()
+        {
+            PatientViewModel newPatient = new();
+
+            return View(newPatient);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel newPatient)
