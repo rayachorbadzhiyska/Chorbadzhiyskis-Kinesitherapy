@@ -1,22 +1,41 @@
 ﻿@model PatientViewModel
 
-<form id="deletePatient-@Model.Id" asp-controller="Patient" asp-action="Delete" asp-route-id="@Model.Id" method="post" role="form">
-    <div class="modal fade" id="deletePatientModal-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="deletePatientModalLabel-@Model.Id" aria-hidden="true">
-        <div class="modal-dialog modal-content">
-            <div class="modal-header">
-                <button style="align-content:end" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p id="deletePatientModalLabel-@Model.Id">Сигурни ли сте, че искате да изтриете пациент @Model.Name?</>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                <button type="submit" class="btn btn-danger">
-                    Изтрий
-                </button>
+@if (Model is not null)
+{
+    <form id="deletePatient-@Model.Id" asp-controller="Patient" asp-action="Remove" asp-route-id="@Model.Id" method="post" role="form">
+        <div id="deletePatientModal-@Model.Id" class="hidden-element" tabindex="-1" role="dialog" aria-labelledby="deletePatientModalLabel-@Model.Id" aria-hidden="true">
+            <div class="modal-dialog modal-content">
+                <div class="modal-header">
+                    <button style="align-content:end" type="button" class="close close-button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="deletePatientModalLabel-@Model.Id">Сигурни ли сте, че искате да изтриете пациент @Model.Name?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Затвори</button>
+                    <button type="submit" class="btn btn-danger">
+                        Изтрий
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#deletePatientModal-@Model.Id').attr('class', 'modal fade');
+        });
+    </script>
+
+    <noscript>
+        <style>
+            .close-button {
+                display: none;
+            }
+        </style>
+    </noscript>
+}

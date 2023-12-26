@@ -90,6 +90,13 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Edit(string id)
+        {
+            var patient = await patientsService.GetAsync(id);
+
+            return View(patient);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel updatedPatient)
@@ -106,9 +113,16 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Delete(string id)
+        {
+            var patient = await patientsService.GetAsync(id);
+
+            return View(patient);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Remove(string id)
         {
             if (!ModelState.IsValid)
             {

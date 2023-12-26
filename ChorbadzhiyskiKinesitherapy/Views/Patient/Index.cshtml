@@ -25,7 +25,16 @@
                     <tbody>
                         @foreach (var patient in Model)
                         {
-                            <partial name="PatientTableRow.cshtml" model="patient" />
+                            <tr>
+                                <td>@patient.Name</td>
+                                <td>@patient.MobileNumber</td>
+                                <td>@patient.Diagnose</td>
+                                <td>@patient.LastAppointment?.ToString("dddd, dd MMMM yyyy")</td>
+                                <td>@patient.FirstAppointment?.ToString("dddd, dd MMMM yyyy")</td>
+                                <td>@patient.Notes</td>
+                                <td><a class="btn btn-outline-dark" asp-controller="Patient" asp-action="Edit" asp-route-id="@patient.Id" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</a></td>
+                                <td><a class="btn btn-danger" asp-controller="Patient" asp-action="Delete" asp-route-id="@patient.Id" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</a></td>
+                            </tr>
 
                             <partial name="Edit.cshtml" model="patient" />
 
@@ -36,7 +45,7 @@
             </div>
 
             <div class="col">
-                <a type="button" href="/Patient/Add" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</a>
+                <a type="button" asp-controller="Patient" asp-action="Add" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</a>
             </div>
         </div>
 
@@ -56,15 +65,9 @@
         </nav>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $('#addPatient').attr('hidden');
-        });
-    </script>
-
     <noscript>
         <style>
-            #addPatientModal {
+            .hidden-element {
                 display: none;
             }
         </style>
