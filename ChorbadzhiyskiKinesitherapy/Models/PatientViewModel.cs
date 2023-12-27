@@ -9,15 +9,15 @@ namespace ChorbadzhiyskiKinesitherapy.Models
         public string Id { get; set; }
 
         [BsonRequired]
-        [Required]
+        [Required(ErrorMessage = "Моля въведете име.")]
         public string Name { get; set; }
 
         [BsonRequired]
-        [Required]
+        [Required(ErrorMessage = "Моля въведете телефонен номер.")]
         public string MobileNumber { get; set; }
 
         [BsonRequired]
-        [Required]
+        [Required(ErrorMessage = "Моля въведете ЕГН.")]
         public string EGN { get; set; }
 
         public string? Address { get; set; }

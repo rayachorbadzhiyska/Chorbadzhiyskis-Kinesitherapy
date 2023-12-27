@@ -65,6 +65,22 @@
         </nav>
     </div>
 
+    <partial name="_ValidationScriptsPartial" />
+
+    @* <script>
+        $(document).ready(function () {
+            // Assuming your modal forms have a class "modal-form"
+            var modalForms = $(".modal-form");
+            console.log(modalForms);
+
+            // Parse the unobtrusive validation for each form inside a modal
+            modalForms.each(function () {
+                console.log(this);
+                $.validator.unobtrusive.parse(this);
+            });
+        });
+    </script> *@
+
     <noscript>
         <style>
             .hidden-element {

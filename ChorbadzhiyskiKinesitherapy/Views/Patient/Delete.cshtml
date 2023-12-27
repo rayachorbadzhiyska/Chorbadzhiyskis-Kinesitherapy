@@ -2,7 +2,7 @@
 
 @if (Model is not null)
 {
-    <form id="deletePatient-@Model.Id" asp-controller="Patient" asp-action="Remove" asp-route-id="@Model.Id" method="post" role="form">
+    <form id="deletePatient-@Model.Id" class="modal-form" asp-controller="Patient" asp-action="Remove" asp-route-id="@Model.Id" method="post" role="form">
         <div id="deletePatientModal-@Model.Id" class="hidden-element" tabindex="-1" role="dialog" aria-labelledby="deletePatientModalLabel-@Model.Id" aria-hidden="true">
             <div class="modal-dialog modal-content">
                 <div class="modal-header">

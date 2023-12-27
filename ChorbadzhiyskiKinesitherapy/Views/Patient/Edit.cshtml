@@ -2,7 +2,7 @@
 
 @if (Model is not null)
 {
-    <form id="editPatient-@Model.Id" asp-controller="Patient" asp-action="Update" asp-route-id="@Model.Id" method="post" role="form">
+    <form id="editPatient-@Model.Id" class="modal-form" asp-controller="Patient" asp-action="Update" asp-route-id="@Model.Id" method="post" role="form">
         <div id="editPatientModal-@Model.Id" class="hidden-element" tabindex="-1" role="dialog" aria-labelledby="editPatientModalLabel-@Model.Id" aria-hidden="true">
             <div class="modal-dialog modal-content">
                 <div class="modal-header">
@@ -22,11 +22,13 @@
                     <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                         <label asp-for="MobileNumber" class="form-label col-auto" style="margin-right:10px">Телефонен номер</label>
                         <input asp-for="MobileNumber" class="form-control" placeholder="Телефонен номер" style="margin-right:auto" autocomplete="on" />
+                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
                     </div>
 
                     <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                         <label asp-for="EGN" class="form-label col-auto" style="margin-right:10px">ЕГН</label>
                         <input asp-for="EGN" class="form-control" placeholder="ЕГН" style="margin-right:auto" autocomplete="on" />
+                        <span asp-validation-for="EGN" class="text-danger"></span>
                     </div>
 
                     <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">

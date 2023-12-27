@@ -2,7 +2,7 @@
 
 @if (Model is not null)
 {
-    <form id="addPatient" class="hidden-element" asp-controller="Patient" asp-action="Create" asp-route-id="Model" method="post" role="form">
+    <form id="addPatient" class="modal-form hidden-element" asp-controller="Patient" asp-action="Create" asp-route-id="Model" method="post" role="form">
         <div id="addPatientModal" tabindex="-1" role="dialog" aria-labelledby="addPatientModalLabel-@Model.Id" aria-hidden="true">
             <div class="modal-dialog modal-content">
                 <div class="modal-header">
@@ -16,17 +16,19 @@
                     <div class="form-row align-items-end mb-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                         <label asp-for="Name" class="form-label col-auto" style="margin-right:10px">Име</label>
                         <input asp-for="Name" class="form-control" placeholder="Име" style="margin-right:auto" autocomplete="on" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <span asp-validation-for="Name" class="form-text text-danger ms-1"></span>
                     </div>
 
                     <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                         <label asp-for="MobileNumber" class="form-label col-auto" style="margin-right:10px">Телефонен номер</label>
                         <input asp-for="MobileNumber" class="form-control" placeholder="Телефонен номер" style="margin-right:auto" autocomplete="on" />
+                        <span asp-validation-for="MobileNumber" class="form-text text-danger ms-1"></span>
                     </div>
 
                     <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">
                         <label asp-for="EGN" class="form-label col-auto" style="margin-right:10px">ЕГН</label>
                         <input asp-for="EGN" class="form-control" placeholder="ЕГН" style="margin-right:auto" autocomplete="on" />
+                        <span asp-validation-for="EGN" class="form-text text-danger ms-1"></span>
                     </div>
 
                     <div class="form-row align-items-end my-2" style="display:flex; flex-direction: row; justify-content: center; align-items: flex-start">

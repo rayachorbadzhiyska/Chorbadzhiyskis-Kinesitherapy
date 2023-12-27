@@ -73,6 +73,9 @@
         });
     </script>
 
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
