@@ -95,13 +95,6 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             return View(patient);
         }
 
-        public async Task<IActionResult> EditPartial(string id)
-        {
-            var patient = await patientsService.GetAsync(id);
-
-            return PartialView("Edit", patient);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel updatedPatient)
@@ -121,13 +114,6 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
             var patient = await patientsService.GetAsync(id);
 
             return View(patient);
-        }
-
-        public async Task<IActionResult> DeletePartial(string id)
-        {
-            var patient = await patientsService.GetAsync(id);
-
-            return PartialView("Delete", patient);
         }
 
         [HttpPost]
