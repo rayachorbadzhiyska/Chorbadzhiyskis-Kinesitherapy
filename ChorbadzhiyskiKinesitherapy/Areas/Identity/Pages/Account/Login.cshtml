@@ -13,13 +13,13 @@
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="08........" />
+                <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.PhoneNumber" class="form-label">Телефонен номер</label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="ЕГН" />
-                <label asp-for="Input.Password" class="form-label">Парола</label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                <label asp-for="Input.Password" class="form-label">Парола (ЕГН)</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="checkbox mb-3">

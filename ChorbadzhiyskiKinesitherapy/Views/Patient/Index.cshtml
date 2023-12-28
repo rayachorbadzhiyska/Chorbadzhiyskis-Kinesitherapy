@@ -6,12 +6,15 @@
 
 @if (Model is not null)
 {
-    <partial name="Add.cshtml" model="new PatientViewModel()" />
+    @if (User.IsInRole("Admin"))
+    {
+        <partial name="Add.cshtml" model="new PatientViewModel()" />
+    }
 
     <div class="container">
         <div class="row">
             <div class="col-10">
-                <table id="patientsTable" class="table w-auto">
+                <table id="patientsTable" class="table">
                     <thead>
                         <tr>
                             <th>Име</th>
@@ -32,24 +35,33 @@
                                 <td>@patient.LastAppointment?.ToString("dddd, dd MMMM yyyy")</td>
                                 <td>@patient.FirstAppointment?.ToString("dddd, dd MMMM yyyy")</td>
                                 <td>@patient.Notes</td>
-                                <td><a class="btn btn-outline-dark" asp-controller="Patient" asp-action="Edit" asp-route-id="@patient.Id" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</a></td>
-                                <td><a class="btn btn-danger" asp-controller="Patient" asp-action="Delete" asp-route-id="@patient.Id" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</a></td>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <td><a class="btn btn-outline-dark" asp-controller="Patient" asp-action="Edit" asp-route-id="@patient.Id" data-bs-toggle="modal" data-bs-target="#editPatientModal-@patient.Id">Промени</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Patient" asp-action="Delete" asp-route-id="@patient.Id" data-bs-toggle="modal" data-bs-target="#deletePatientModal-@patient.Id">Изтрий</a></td>
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                @foreach (var patient in Model)
+                @if (User.IsInRole("Admin"))
                 {
-                    <partial name="Edit.cshtml" model="patient" />
+                    @foreach (var patient in Model)
+                    {
+                        <partial name="Edit.cshtml" model="patient" />
 
-                    <partial name="Delete.cshtml" model="patient" />
+                        <partial name="Delete.cshtml" model="patient" />
+                    }
                 }
             </div>
 
-            <div class="col">
-                <a type="button" asp-controller="Patient" asp-action="Add" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</a>
-            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col">
+                    <a type="button" asp-controller="Patient" asp-action="Add" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addPatientModal">Добави Пациент</a>
+                </div>
+            }
         </div>
 
         <nav>
@@ -69,20 +81,6 @@
     </div>
 
     <partial name="_ValidationScriptsPartial" />
-
-    @* <script>
-        $(document).ready(function () {
-            // Assuming your modal forms have a class "modal-form"
-            var modalForms = $(".modal-form");
-            console.log(modalForms);
-
-            // Parse the unobtrusive validation for each form inside a modal
-            modalForms.each(function () {
-                console.log(this);
-                $.validator.unobtrusive.parse(this);
-            });
-        });
-    </script> *@
 
     <noscript>
         <style>

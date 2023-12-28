@@ -1,6 +1,7 @@
 using ChorbadzhiyskiKinesitherapy.Data;
 using ChorbadzhiyskiKinesitherapy.Models;
 using ChorbadzhiyskiKinesitherapy.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChorbadzhiyskiKinesitherapy
@@ -21,7 +22,11 @@ namespace ChorbadzhiyskiKinesitherapy
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(identityDatabaseConnectionString));
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+            builder
+                .Services
+                .AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>()

@@ -66,6 +66,11 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         public IActionResult Add()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             PatientViewModel newPatient = new();
 
             return View(newPatient);
@@ -90,6 +95,11 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         public async Task<IActionResult> Edit(string id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             var patient = await patientsService.GetAsync(id);
 
             return View(patient);
@@ -111,6 +121,11 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
 
         public async Task<IActionResult> Delete(string id)
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             var patient = await patientsService.GetAsync(id);
 
             return View(patient);
