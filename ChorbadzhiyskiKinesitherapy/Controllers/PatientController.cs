@@ -80,15 +80,17 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel newPatient)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await patientsService.CreateAsync(newPatient);
-
-                var user = CreateUser();
-
-                await userStore.SetUserNameAsync(user, newPatient.MobileNumber, CancellationToken.None);
-                var result = await userManager.CreateAsync(user, newPatient.MobileNumber);
+                return View("Add", newPatient);
             }
+
+            await patientsService.CreateAsync(newPatient);
+
+            var user = CreateUser();
+
+            await userStore.SetUserNameAsync(user, newPatient.MobileNumber, CancellationToken.None);
+            var result = await userManager.CreateAsync(user, newPatient.MobileNumber);
 
             return RedirectToAction("Index");
         }
@@ -109,12 +111,15 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(string id, [Bind("Name, MobileNumber, EGN, Birthday, Address, Diagnose, FirstAppointment, Notes")] PatientViewModel updatedPatient)
         {
-            if (ModelState.IsValid)
-            {
-                updatedPatient.Id = id;
+            // There's a new generated ID when editing, so we change it back to the old one.
+            updatedPatient.Id = id;
 
-                await patientsService.UpdateAsync(id, updatedPatient);
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", updatedPatient);
             }
+
+            await patientsService.UpdateAsync(id, updatedPatient);
 
             return RedirectToAction("Index");
         }
@@ -135,11 +140,6 @@ namespace ChorbadzhiyskiKinesitherapy.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(string id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             await patientsService.RemoveAsync(id);
 
             return RedirectToAction("Index");
